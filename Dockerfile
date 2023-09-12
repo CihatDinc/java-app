@@ -1,5 +1,5 @@
-FROM openjdk:8
+FROM alpine:latest
 
-COPY  target/*.jar  myapp.jar
+#COPY  target/*.jar  myapp.jar
 
-ENTRYPOINT  [ "java" , "-jar" ,  "myapp.jar"  ]
+ENTRYPOINT  ["tail", "-f", "/dev/null"]
