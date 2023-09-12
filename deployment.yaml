@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: plt-comm-customer-deployment
+  namespace: plt
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: plt-comm-customer
+  template:
+    metadata:
+      labels:
+        app: plt-comm-customer
+    spec:
+      serviceAccountName: era-plt-service-account
+      containers:
+        - name: 212845026981.dkr.ecr.eu-central-1.amazonaws.com/nebim-era-plt-comm-customer-dev:0.0.87-cd5c1de2791333c939ef1958623fa8506224565c-0.8.1
+          image: CONTAINER_IMAGE
+          ports:
+            - containerPort: 8080
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://*:8080"
+            - name: SERVICE_VERSION
+              value: SERVICE_GIT_VERSION               
